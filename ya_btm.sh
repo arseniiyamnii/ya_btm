@@ -21,7 +21,7 @@ if [ $1 = "show-temps" ]; then
 fi
 if [ $1 = "use" ]; then
     cp -r ~/.yabtm/templates/"$2"/* .
-    ~/programming/ya_btm/render.py
+    ya_btm_render
     cp -r ./template/* .
 fi
 if [ $1 = "update" ]; then
