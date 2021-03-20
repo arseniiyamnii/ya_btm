@@ -4,5 +4,7 @@ if [ "$1" = "uninstall" ]; then
 else
     ln -s $(pwd)/ya_btm.sh /usr/local/bin/ya_btm
     ln -s $(pwd)/render.py /usr/local/bin/ya_btm_render
-    ya_btm init
+    ln -s $(pwd)/ya_btm_hooks.sh /usr/local/bin/ya_btm_hook
+    mkdir -p ~/.yabtm/templates
+
 fi

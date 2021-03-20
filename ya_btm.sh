@@ -1,9 +1,9 @@
 #!/bin/bash
-if [ $1 = "init" ]; then
-    mkdir -p ~/.yabtm/templates
-    touch ~/.yabtm/dump.json
-    echo "instalaition complate"
-fi
+#if [ $1 = "init" ]; then
+#    mkdir -p ~/.yabtm/templates
+#    touch ~/.yabtm/dump.json
+#    echo "instalaition complate"
+#fi
 if [ $1 = "install" ]; then
     echo $2
     dirname=$(echo "$2" | awk -F/ '{print($2)}' | awk -F. '{print($1)}')
