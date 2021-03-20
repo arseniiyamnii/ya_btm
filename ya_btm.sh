@@ -23,6 +23,7 @@ if [ $1 = "use" ]; then
     cp -r ~/.yabtm/templates/"$2"/* .
     ya_btm_render
     cp -r ./template/* .
+    rm -rf template
 fi
 if [ $1 = "update" ]; then
 bash -c "cd ~/.yabtm/templates/$2; git pull --force"
