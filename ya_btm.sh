@@ -20,10 +20,13 @@ if [ $1 = "show-temps" ]; then
     ls ~/.yabtm/templates
 fi
 if [ $1 = "use" ]; then
-    cp -r ~/.yabtm/templates/"$2"/* .
+	mkdir yabtm_temp
+    cp -r ~/.yabtm/templates/"$2"/* ./yabtm_temp
+	cd yabtm_temp
     ya_btm_render
-    cp -r ./template/* .
-    rm -rf template
+	cd ..
+    cp -r ./yabtm_temp/* .
+    rm -rf yabtm_temp
 fi
 if [ $1 = "update" ]; then
 bash -c "cd ~/.yabtm/templates/$2; git pull --force"
