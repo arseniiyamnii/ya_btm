@@ -6,7 +6,7 @@
 #fi
 if [ "$1" = "install" ]; then
 	echo $2
-	dirname=$(echo "$2" | awk -F/ '{print($2)}' | awk -F. '{print("$1")}')
+	dirname=$(echo "$2" | awk -F/ '{print($2)}' | awk -F. '{print($1)}')
 	echo $dirname
 	mkdir -p ~/.yabtm/templates/$dirname
 	git clone $2 ~/.yabtm/templates/$dirname
