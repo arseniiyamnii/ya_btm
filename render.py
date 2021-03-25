@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import pystache
 import json
+import os
 
 def chooser(ask, value):
     print(ask)
@@ -10,14 +11,16 @@ def chooser(ask, value):
         n+=1
     number = int(input())
     return(value[number])
+
 with open('yabtm.conf.json') as json_file:
     config = json.load(json_file)
-print(config)
+#print(config)
 query = {}
+query["projectPath"] = str(os.getcwd())[:-11]
 for i in config["fields"]:
     #    if(isinstance(i, str)):
     #print(config["fields"][i])
-    print(type(config["fields"][i]['value']))
+ #   print(type(config["fields"][i]['value']))
     if(isinstance(config["fields"][i]['value'], list)):
        #config["fields"][i]["temp"] = chooser(config["fields"][i]["ask"],config["fields"][i]["value"])
        answ = chooser(config["fields"][i]["ask"],config["fields"][i]["value"])

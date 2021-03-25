@@ -70,4 +70,16 @@ if [ $1 = "chooser" ]; then
     echo Готово
 
 fi
+if [ $1 = "help" ] || [ $1 = "--help" ]; then
+cat << EOF
+	usage: ya_brm.sh [command][options]
+	commands:
+	help - this help
+	showall
+	usefrom
+	showfrom
+	chooser
+EOF
+
+fi
 
