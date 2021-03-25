@@ -42,6 +42,7 @@ if [ "$1" = "help" ]; then
 usage: ya_brm.sh [command][options]
 commands:
 help - this help
+chooser
 update <template> = git pull template
 install <github repo.git> = download repo
 use <template name>
@@ -65,20 +66,21 @@ if [ "$1" = "chooser" ]; then
 	done
 
 	read -p "введите цифру: " tempNum
+	echo $tempNum
 	num=1
 	#взять номер шаблона из его порядкового номера
 	for i in ~/.yabtm/templates/*; do
 		#echo "$i/hooks"
-
-		if [ $tempNum -eq $num ]; then
-			choosen_template=$i
-			num=$((num + 1))
-
+		if [ "$tempNum" -eq "$num" ]; then
+			choosen_template=$i	
 		fi
+		num=$((num + 1))
 	done
 	printf "you choose $(echo $choosen_template | awk -F/ '{print $NF}')\n\n"
 	mkdir yabtm_temp
+	echo $choosen_template
 	cp -r ~/.yabtm/templates/"$(echo $choosen_template | awk -F/ '{print $NF}')"/. ./yabtm_temp
+	sleep 1
 	cd yabtm_temp
 	ya_btm_render
 	cd ..
