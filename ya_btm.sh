@@ -9,7 +9,8 @@ if [ "$1" = "install" ]; then
 	dirname=$(echo "$2" | awk -F/ '{print($2)}' | awk -F. '{print($1)}')
 	echo $dirname
 	mkdir -p ~/.yabtm/templates/$dirname
-	git clone $2 ~/.yabtm/templates/$dirname
+	cd ~/.yabtm/templates
+	git clone $2 $dirname
 	echo "download complate"
 fi
 if [ "$1" = "uninstall" ]; then
