@@ -81,7 +81,6 @@ if [ "$1" = "chooser" ]; then
 	mkdir yabtm_temp
 	echo $choosen_template
 	cp -r ~/.yabtm/templates/"$(echo $choosen_template | awk -F/ '{print $NF}')"/. ./yabtm_temp
-	sleep 1
 	cd yabtm_temp
 	ya_btm_render
 	cd ..
