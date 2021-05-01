@@ -53,7 +53,7 @@ uninstall = rm ~/.yabtm folder
 init = create ~/.yabtm folder
 EOF
 fi
-if [ "$1" = "chooser" ]; then
+if [ "$1" = "chooser" ] | [ "$1" = "" ]; then
 	echo "choose your template: "
 	num=1
 	#вывод списка шаблонов
