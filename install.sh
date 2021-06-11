@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ "$1" = "uninstall" ]; then
 	sudo rm /usr/local/bin/ya_btm
+	sudo rm /usr/local/bin/yabtm
 	sudo rm /usr/local/bin/ya_btm_render
 	sudo rm /usr/local/bin/ya_btm_hook
 	sudo rm -rf ~/.yabtm
@@ -14,6 +15,7 @@ else
 		fi
 	fi
 	ln -s $(pwd)/ya_btm.sh /usr/local/bin/ya_btm
+	ln -s $(pwd)/ya_btm.sh /usr/local/bin/yabtm
 	ln -s $(pwd)/render.py /usr/local/bin/ya_btm_render
 	ln -s $(pwd)/ya_btm_hooks.sh /usr/local/bin/ya_btm_hook
 	mkdir -p ~/.yabtm/templates
