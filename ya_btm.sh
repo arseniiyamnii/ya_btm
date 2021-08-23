@@ -12,15 +12,12 @@ if [ "$1" = "install" ]; then
 	cd ~/.yabtm/templates
 	git clone $2 $dirname
 	echo "download complate"
-fi
-if [ "$1" = "uninstall" ]; then
+elif [ "$1" = "uninstall" ]; then
 	rm -rf ~/.yabtm
 	echo "uninstall complate"
-fi
-if [ "$1" = "show-temps" ]; then
+elif [ "$1" = "show-temps" ]; then
 	ls ~/.yabtm/templates
-fi
-if [ "$1" = "use" ]; then
+elif [ "$1" = "use" ]; then
 	mkdir yabtm_temp
 	cp -r ~/.yabtm/templates/"$2"/. ./yabtm_temp
 	cd yabtm_temp
@@ -28,17 +25,14 @@ if [ "$1" = "use" ]; then
 	cd ..
 	cp -r ./yabtm_temp/template/. .
 	rm -rf yabtm_temp
-fi
-if [ "$1" = "update" ]; then
+elif [ "$1" = "update" ]; then
 	bash -c "cd ~/.yabtm/templates/$2; git pull --force"
-fi
-if [ "$1" = "update-all" ]; then
+elif [ "$1" = "update-all" ]; then
 	for i in ~/.yabtm/templates/*; do
 		echo $i
 		bash -c "cd $i; git pull"
 	done
-fi
-if [ "$1" = "help" ]; then
+elif [ "$1" = "help" ]; then
 	cat <<EOF
 usage: ya_brm.sh [command][options]
 commands:
@@ -52,8 +46,7 @@ update-all = update all templates(git pull)
 uninstall = rm ~/.yabtm folder
 init = create ~/.yabtm folder
 EOF
-fi
-if [ "$1" = "chooser" ] | [ "$1" = "" ]; then
+elif [ "$1" = "chooser" ] | [ "$1" = "" ]; then
 	echo "choose your template: "
 	num=1
 	#вывод списка шаблонов
@@ -86,5 +79,25 @@ if [ "$1" = "chooser" ] | [ "$1" = "" ]; then
 	cd ..
 	cp -r ./yabtm_temp/template/. .
 	rm -rf yabtm_temp
-
+else
+	tempNum=$1
+	echo $tempNum
+	num=1
+	#взять номер шаблона из его порядкового номера
+	for i in ~/.yabtm/templates/*; do
+		#echo "$i/hooks"
+		if [ "$tempNum" -eq "$num" ]; then
+			choosen_template=$i	
+		fi
+		num=$((num + 1))
+	done
+	printf "you choose $(echo $choosen_template | awk -F/ '{print $NF}')\n\n"
+	mkdir yabtm_temp
+	echo $choosen_template
+	cp -r ~/.yabtm/templates/"$(echo $choosen_template | awk -F/ '{print $NF}')"/. ./yabtm_temp
+	cd yabtm_temp
+	ya_btm_render
+	cd ..
+	cp -r ./yabtm_temp/template/. .
+	rm -rf yabtm_temp
 fi
